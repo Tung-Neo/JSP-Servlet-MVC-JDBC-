@@ -5,7 +5,7 @@
   Time: 11:18 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.util.*,com.example.demoMVC2.*" %>
+<%@ page import="java.util.*, com.example.demoMVC2.*" %>
 <!DOCTYPE html>
 <html>
 <head>

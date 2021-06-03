@@ -3,20 +3,43 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <sql:query var="rs" dataSource="jdbc/codeleanvn">
-    select id, foo, bar from testdata
+    select * from student
 </sql:query>
 
 <html>
 <head>
     <title>DB Test</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<h2>Results</h2>
-<c:forEach var="row" items="${rs.rows}">
-    Foo ${row.foo}<br/>
-    Bar ${row.bar}<br/>
-</c:forEach>
+<div id="container">
+
+    <div id="content">
+
+        <table>
+
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+
+            <c:forEach var="tempStudent" items="${STUDENT_LIST}">
+
+                <tr>
+                    <td> ${tempStudent.firstName} </td>
+                    <td> ${tempStudent.lastName} </td>
+                    <td> ${tempStudent.email} </td>
+                </tr>
+
+            </c:forEach>
+
+        </table>
+
+    </div>
+
+</div>
 
 <a href="StudentControllerServlet">Student CRUD</a>
 <a href="jdbctest">Connection Pool with Servlet</a>

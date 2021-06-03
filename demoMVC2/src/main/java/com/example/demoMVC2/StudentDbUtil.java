@@ -28,7 +28,7 @@ public class StudentDbUtil {
             myConn = dataSource.getConnection();
 
             // create sql statement
-            String sql = "select * from student order by last_name";
+            String sql = "select * from student order by lastName";
 
             myStmt = myConn.createStatement();
 
@@ -39,13 +39,13 @@ public class StudentDbUtil {
             while (myRs.next()) {
 
                 // retrieve data from result set row
-                int id = myRs.getInt("id");
-                String firstName = myRs.getString("first_name");
-                String lastName = myRs.getString("last_name");
+                int studentId = myRs.getInt("studentId");
+                String firstName = myRs.getString("firstName");
+                String lastName = myRs.getString("lastName");
                 String email = myRs.getString("email");
 
                 // create new student object
-                Student tempStudent = new Student(id, firstName, lastName, email);
+                Student tempStudent = new Student(studentId, firstName, lastName, email);
 
                 // add it to the list of students
                 students.add(tempStudent);
@@ -90,7 +90,7 @@ public class StudentDbUtil {
 
             // create sql for insert
             String sql = "insert into student "
-                    + "(first_name, last_name, email) "
+                    + "(firstName, lastName, email) "
                     + "values (?, ?, ?)";
 
             myStmt = myConn.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class StudentDbUtil {
             myConn = dataSource.getConnection();
 
             // create sql to get selected student
-            String sql = "select * from student where id=?";
+            String sql = "select * from student where studentId=?";
 
             // create prepared statement
             myStmt = myConn.prepareStatement(sql);
@@ -139,8 +139,8 @@ public class StudentDbUtil {
 
             // retrieve data from result set row
             if (myRs.next()) {
-                String firstName = myRs.getString("first_name");
-                String lastName = myRs.getString("last_name");
+                String firstName = myRs.getString("firstName");
+                String lastName = myRs.getString("lastName");
                 String email = myRs.getString("email");
 
                 // use the studentId during construction
@@ -169,8 +169,8 @@ public class StudentDbUtil {
 
             // create SQL update statement
             String sql = "update student "
-                    + "set first_name=?, last_name=?, email=? "
-                    + "where id=?";
+                    + "set firstName=?, lastName=?, email=? "
+                    + "where studentId=?";
 
             // prepare statement
             myStmt = myConn.prepareStatement(sql);
@@ -203,7 +203,7 @@ public class StudentDbUtil {
             myConn = dataSource.getConnection();
 
             // create sql to delete student
-            String sql = "delete from student where id=?";
+            String sql = "delete from student where studentId=?";
 
             // prepare statement
             myStmt = myConn.prepareStatement(sql);
